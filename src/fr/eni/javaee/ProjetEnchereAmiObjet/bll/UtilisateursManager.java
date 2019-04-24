@@ -15,17 +15,26 @@ import fr.eni.javaee.ProjetEnchereAmiObjet.dal.UtilisateursDAO;
 
 public class UtilisateursManager {
 
-	private static final String SELECT_USER_PASS = "select * from utilisateurs where pseudo = ? and mot_de_passe = ? ";
+	private static final String SELECT_USER_PASS = "select * from utilisateurs where pseudo = ?";
+	private static UtilisateursManager instance = null;
 	private UtilisateursDAO utilisateursDAO;
 
 	public UtilisateursManager() {
 		this.utilisateursDAO = DAOFactory.getUtilisateursDAO();
 	}
 
-	public void addUtilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email,
-			String telephone, String rue, String codePostal, String ville, String motDePasse, int credit,
-			boolean administrateur) throws DALException {
+	public static UtilisateursManager getInstance() throws BLLException {
+		if (instance == null) {
+			instance = new UtilisateursManager();
+		}
+		return instance;
+	}
+
+	public Utilisateur addUtilisateur(String pseudo, String nom, String prenom, String email, String telephone,
+			String rue, String codePostal, String ville, String motDePasse) throws DALException {
+
 		Utilisateur utilisateurs = new Utilisateur();
+
 		utilisateurs.setPseudo(pseudo);
 		utilisateurs.setNom(nom);
 		utilisateurs.setPrenom(prenom);
@@ -35,8 +44,11 @@ public class UtilisateursManager {
 		utilisateurs.setCodePostal(codePostal);
 		utilisateurs.setVille(ville);
 		utilisateurs.setMotDePasse(motDePasse);
-
 		this.utilisateursDAO.insert(utilisateurs);
+
+		System.out.println("test" + utilisateurs.getNoUtilisateur());
+
+		return utilisateurs;
 	}
 
 	public List<Utilisateur> selectAll() throws DALException {
@@ -53,6 +65,7 @@ public class UtilisateursManager {
 			PreparedStatement preparedStatement = cnx.prepareStatement(SELECT_USER_PASS);
 			preparedStatement.setString(1, utilisateur.getPseudo());
 
+			System.out.println(utilisateur.getPseudo());
 			// preparedStatement.setString(2, utilisateur.getMotDePasse());
 
 			// hashpw(utilisateur.getMotDePasse(), BCrypt.gensalt(15)

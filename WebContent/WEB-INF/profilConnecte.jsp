@@ -5,7 +5,7 @@
 <head>
 
 <jsp:include page="/WEB-INF/fragments/head.jsp"></jsp:include>
-<%@ include file="./fragments/headerBis.html"%>
+		<jsp:include page="./fragments/header.jsp" />
 </head>
 
 

@@ -47,10 +47,10 @@ public class ServletConnexion extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String pseudo = request.getParameter("uname");
-		String mot_de_passe = request.getParameter("pass");
+		String identifiant = request.getParameter("identifiant");
+		String password = request.getParameter("password");
 
-		Utilisateur utilisateurjsp = new Utilisateur(pseudo, mot_de_passe);
+		Utilisateur utilisateurjsp = new Utilisateur(identifiant, password);
 
 		UtilisateursManager managerUtilisateur = new UtilisateursManager();
 
@@ -59,7 +59,7 @@ public class ServletConnexion extends HttpServlet {
 			boolean valide = managerUtilisateur.validate(utilisateurjsp);
 			if (valide) {
 				HttpSession session = request.getSession();
-				session.setAttribute("usename", pseudo);
+				session.setAttribute("usename", identifiant);
 				// il faut pas oublié que j'envois vers une servlet et pas une jsp
 				response.sendRedirect("loginsuccess.jsp");
 			} else {

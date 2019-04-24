@@ -13,12 +13,14 @@ import fr.eni.javaee.ProjetEnchereAmiObjet.bo.Utilisateur;
 
 public class UtilisateursDAOjdbcImpl implements UtilisateursDAO {
 
-	private static final String INSERT_UTILISATEURS = "INSERT into UTILISATEURS (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) values (?,?,?,?,?,?,?,?,?,?,?)";
+	private static final String INSERT_UTILISATEURS = "INSERT into UTILISATEURS (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe,credit, administrateur) values (?,?,?,?,?,?,?,?,?,?,?)";
 	private static final String SELECT_UTILISATEURS = "select pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur from utilisateurs";
 	private static final String SELECT_USER_PASS = "select * from utilisateurs where pseudo = ? and mot_de_passe = ? ";
+	private final static String CLEF_SALT = "$2a$15$oJdacDBNWLqlVZ4ZXiRAc.";
 
 	@Override
-	public void insert(Utilisateur utilisateur) throws DALException {
+	public Utilisateur insert(Utilisateur utilisateur) throws DALException {
+
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 			cnx.setAutoCommit(false);
 
@@ -33,9 +35,9 @@ public class UtilisateursDAOjdbcImpl implements UtilisateursDAO {
 			pstmt.setString(6, utilisateur.getRue());
 			pstmt.setString(7, utilisateur.getCodePostal());
 			pstmt.setString(8, utilisateur.getVille());
-			pstmt.setString(9, BCrypt.hashpw(utilisateur.getMotDePasse(), BCrypt.gensalt(15)));
-			pstmt.setInt(10, utilisateur.getCredit());
-			pstmt.setBoolean(11, utilisateur.isAdministrateur());
+			pstmt.setString(9, BCrypt.hashpw(utilisateur.getMotDePasse(), CLEF_SALT));
+			pstmt.setInt(10, 0);
+			pstmt.setBoolean(11, false);
 
 			pstmt.executeUpdate();
 			ResultSet rs = pstmt.getGeneratedKeys();
@@ -49,6 +51,7 @@ public class UtilisateursDAOjdbcImpl implements UtilisateursDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return utilisateur;
 
 	}
 

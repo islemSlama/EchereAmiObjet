@@ -9,38 +9,67 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.javaee.ProjetEnchereAmiObjet.bll.BLLException;
+import fr.eni.javaee.ProjetEnchereAmiObjet.bll.UtilisateursManager;
+import fr.eni.javaee.ProjetEnchereAmiObjet.bo.Utilisateur;
+import fr.eni.javaee.ProjetEnchereAmiObjet.dal.DALException;
+
 /**
  * Servlet implementation class profilConnecté
  */
 @WebServlet("/profilConnecte")
 public class profilConnecte extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public profilConnecte() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
+	public profilConnecte() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/profilConnecte.jsp");
 		rd.forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String pseudo = request.getParameter("pseudo");
+		String nom = request.getParameter("nom");
+		String prenom = request.getParameter("prenom");
+		String email = request.getParameter("email");
+		String telephone = request.getParameter("telephone");
+		String rue = request.getParameter("rue");
+		String codePostal = request.getParameter("codePostal");
+		String ville = request.getParameter("ville");
+		String motDePasse = request.getParameter("mdp");
+		String confirmation = request.getParameter("mdpConf");
+
+		UtilisateursManager utilisateursmanager;
+		try {
+			utilisateursmanager = UtilisateursManager.getInstance();
+			Utilisateur monNouvUtilisateur = utilisateursmanager.addUtilisateur(pseudo, nom, prenom, email, telephone,
+					rue, codePostal, ville, motDePasse);
+
+			System.out.println("OK !!!");
+
+		} catch (BLLException | DALException e) {
+			e.printStackTrace();
+		}
+
+		response.sendRedirect("profilConnecte");
 	}
 
 }

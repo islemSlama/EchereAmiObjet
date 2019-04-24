@@ -1,4 +1,4 @@
-
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <header class="container-fluid">
 
 
@@ -13,16 +13,32 @@
 
 			<ul class="navbar-nav ml-auto">
 
-				<li class="nav-item"><a class="nav-link " href="/Projet_Echere_Ami_Objet/">Enchere</a>
-				</li>
+				<li class="nav-item"><a class="nav-link "
+					href="/Projet_Echere_Ami_Objet/">Enchere</a></li>
 				<li class="nav-item"><a class="nav-link "
 					href="/Projet_Echere_Ami_Objet/">Vendre un article</a></li>
 				<li class="nav-item"><a class="nav-link "
-					href="/Projet_Echere_Ami_Objet/">Mon profil</a></li>
+					href="/Projet_Echere_Ami_Objet/"> <c:if
+							test="${sessionScope.usename != null}">
+							<p>bonjour ${sessionScope.usename}</p>
+						</c:if></a></li>
 
 
 				<li class="nav-item"><a class="nav-link "
-					href="/Projet_Echere_Ami_Objet/Connexion">Connexion</a></li>
+					href="/Projet_Echere_Ami_Objet/Connexion"> 
+					
+					<c:choose>
+				      <c:when test="${sessionScope.usename != null}">
+				     	<p>Deconnection</p>
+				      </c:when>
+				
+				      <c:otherwise>
+				      	<p>Connection</p>
+				      </c:otherwise>
+				    </c:choose>
+			
+
+				</a></li>
 			</ul>
 		</div>
 	</nav>

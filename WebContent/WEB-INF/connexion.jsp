@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <jsp:include page="/WEB-INF/fragments/head.jsp"></jsp:include>
-		<%@ include file="./fragments/header.html"%>
+		<jsp:include page="./fragments/header.jsp" />
 </head>
 
 <body>

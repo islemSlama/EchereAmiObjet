@@ -6,8 +6,8 @@
 <jsp:include page="/WEB-INF/fragments/head.jsp"></jsp:include>
 
 <body class="container-fluid">
+<jsp:include page="./fragments/header.jsp" />
 
-	<%@ include file="./fragments/header.html"%>
 
 	<h1 class="text-center">Liste des enchères</h1>
 	<h2 class="col-12 ">Filtres :</h2>
