@@ -13,13 +13,13 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class profilConnecté
  */
 @WebServlet("/profilConnecte")
-public class profilConnecté extends HttpServlet {
+public class profilConnecte extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public profilConnecté() {
+    public profilConnecte() {
         super();
         // TODO Auto-generated constructor stub
     }
