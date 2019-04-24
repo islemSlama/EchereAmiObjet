@@ -17,7 +17,7 @@ import fr.eni.javaee.ProjetEnchereAmiObjet.dal.DALException;
 /**
  * Servlet implementation class ServletConnexion
  */
-@WebServlet("/ConnexionServlet")
+@WebServlet("/Connexion")
 public class ServletConnexion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

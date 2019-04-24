@@ -1,0 +1,112 @@
+@charset "UTF-8";
+
+.modal.right .modal-dialog,
+.modal.left .modal-dialog {
+	position: fixed;
+	margin: auto;
+	width: 320px;
+	height: 100%;
+	-webkit-transform: translate3d(0%, 0, 0);
+	-ms-transform: translate3d(0%, 0, 0);
+	-o-transform: translate3d(0%, 0, 0);
+	transform: translate3d(0%, 0, 0);
+}
+
+.modal.right .modal-content,
+.modal.left .modal-content {
+	height: auto ;
+	overflow-y: auto;
+}
+
+.modal.right .modal-body,
+.modal.left .modal-body {
+	padding: 15px 15px 80px;
+}
+
+.modal.left.fade .modal-dialog {
+	left: -320px;
+	-webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
+	-moz-transition: opacity 0.3s linear, left 0.3s ease-out;
+	-o-transition: opacity 0.3s linear, left 0.3s ease-out;
+	transition: opacity 0.3s linear, left 0.3s ease-out;
+}
+
+.modal.left.fade.show .modal-dialog {
+	left: 0;
+}
+
+.modal.right.fade .modal-dialog {
+	right: -320px;
+	-webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
+	   -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
+	     -o-transition: opacity 0.3s linear, right 0.3s ease-out;
+	        transition: opacity 0.3s linear, right 0.3s ease-out;
+}
+	
+.modal.right.fade.show .modal-dialog {
+	right: 0;
+}
+
+/**********************************/
+
+input.error{
+	border-color:red;
+}
+
+/********************************/
+
+main{
+	padding: 1rem 0;
+}
+
+/**********************************/
+
+
+input#achats + label + div#bloc-achats input,
+input#achats + label + div#bloc-achats label{
+	pointer-events:none;
+    color:#d5d5d5;
+    cursor: not-allowed;
+}
+
+input#achats:checked + label + div#bloc-achats input,
+input#achats:checked + label + div#bloc-achats label{
+	pointer-events:auto;
+    color:inherit;
+    cursor: auto;
+}
+
+input#ventes + label + div#bloc-ventes input,
+input#ventes + label + div#bloc-ventes label{
+	pointer-events:none;
+    color:#d5d5d5;
+    cursor: not-allowed;
+}
+
+input#ventes:checked + label + div#bloc-ventes input,
+input#ventes:checked + label + div#bloc-ventes label{
+	pointer-events:auto;
+    color:inherit;
+    cursor: auto;
+}
+
+/****************Vente*********************/
+
+#form_article fieldset{
+	width:95%;
+	margin:auto;
+	border:1px solid black;
+	padding-bottom:0.5rem;
+}
+
+#form_article fieldset legend{
+	width:auto;
+	padding: 0.4rem 1.5rem;
+	margin-left:0.4em;
+}
+
+/************************************/
+
+.detail_article{
+	cursor:pointer;
+}

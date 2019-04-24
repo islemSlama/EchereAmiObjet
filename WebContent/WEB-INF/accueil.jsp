@@ -74,6 +74,8 @@
 			</div>
 		</div>
 	</form>
+	
+	
 	<div id="resultats" class="row ">
 
 
@@ -111,6 +113,41 @@
 
 
 							Vendeur : <a href=''>jojo44</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-12 col-md-6 p-2 detail_article" data-id="1">
+			<div class="border border-dark rounded">
+				<div class="d-flex">
+					<div class="col-3 p-2">
+
+
+						<img src="images/lt-p-black-rice-cooker-1-8l-650w.jpg"
+							alt="Portable Acer" class="img-fluid img-thumbnail" />
+
+
+
+					</div>
+					<div class="col-9 p-2">
+						<h3>Rocketstove pour riz et pates</h3>
+
+
+
+
+						<p>Prix : 185 points</p>
+
+						<p>Fin de l'enchère : 25/06/2019</p>
+						<p>
+
+
+
+
+
+
+							Vendeur : <a href=''>NineJea</a>
 						</p>
 					</div>
 				</div>
