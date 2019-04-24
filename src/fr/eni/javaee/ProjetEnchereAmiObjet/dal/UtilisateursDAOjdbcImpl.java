@@ -13,6 +13,7 @@ public class UtilisateursDAOjdbcImpl implements UtilisateursDAO {
 
 	private static final String INSERT_UTILISATEURS = "INSERT into UTILISATEURS (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) values (?,?,?,?,?,?,?,?,?,?,?)";
 	private static final String SELECT_UTILISATEURS = "select pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur from utilisateurs";
+	private static final String SELECT_USER_PASS = "select * from utilisateurs where pseudo = ? and mot_de_passe = ? ";
 
 	@Override
 	public void insert(Utilisateur utilisateur) throws DALException {

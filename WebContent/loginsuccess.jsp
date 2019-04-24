@@ -7,16 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action ="ConnexionServlet" method= "post">
-
-Username: <input type = "text" name ="uname"/>
-<br>
-Password: <input type = "password" name ="pass"/>
-
-<br>
-
- <input type = "submit" name ="ConnexionServlet"/>
- 
- </form>
+Welcom.....
 </body>
 </html>
