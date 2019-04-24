@@ -4,38 +4,66 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Connecxion</title>
-</head>
-<body class="container-fluid">
-	<form action="Connexion" method="post">
-
-		<jsp:include page="/WEB-INF/fragments/head.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/fragments/head.jsp"></jsp:include>
 		<%@ include file="./fragments/header.html"%>
+</head>
 
-
-
+<body>
+	<div class="container">
+			
+			<div class="row">
+	        	<div class="col-sm-3"></div>
+				<form action="Connexion" method="post" class="col-sm-6">
+					<div class="form-group">
+					   <label>Identifiant :</label>	
+					 				<input name="identifiant" placeholder="Entrez votre identifiant" value="${identifiant}" type="text" class="form-control" maxlength="50">									   
+					  
+						
+					</div>
+					<div class="form-group">
+						<label>Mot de passe :</label>
+						<input name="password" placeholder="Entrez votre mot de passe" type="password" class="form-control" maxlength="30">
+						
+					</div>
 	
-
-		<div id="username" class="row">
-
-
-			Identifiant : <input type="text" name="uname" /> <br> <br> 
-			Mot de passe :<input type="password" name="pass" /> <br> <br>
-			<input type="submit" name="Connexion" />
-		</div>
-
-		
-			<br> <input type="checkbox" name="souvenir"> Se souvenir de moi <br> <a href="/Projet_Echere_Ami_Objet/MotDePasse">Mot de passe oublié</a>
-
-	
-		</div>
-</form>
-	<div
-		class="col-12 col-md-8 text-center py-2 align-middle h-100 align-self-center">
-		<a class="btn btn-default btn-lg w-75 py-4" type="submit"
-			id="searchbtn" href="/Projet_Echere_Ami_Objet/creerProfil">Creer un compte</a>
+					<div class="row">
+						<div class="col-sm-3 col-md-5 offset-sm-1 offset-md-6 offset-lg-0">
+							<a class="btn btn-lg" href="listeEncheres">
+								<button type="submit" class="btn vert lienBouton fatBoutonHalf">Connexion</button>
+							</a>
+						</div>
+						<div class="col-sm-3 col-md-7 offset-md-7 offset-lg-0">
+							<div class="row">
+								<div class="col-sm-12 col-md-12">
+									<label class="checkbox">
+										<input type="checkbox" name="alzheimer">&nbsp;Se souvenir de moi
+									</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-12 col-md-12">
+									<a class="mdpOublie link" href="#">Mot de passe oublié</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+				</div>
+			<div class="row">
+				<div class="col-sm-12 offset-sm-3">
+					<a class="btn btn-lg" href="/Projet_Echere_Ami_Objet/creerProfil">
+						<button type="button" class="btn bleu lienBouton fatBoutonFull">Créer un compte</button>
+					</a>
+				</div>
 			</div>
+		</div>
+				
 			
 </body>
 
 </html>
+
+
+
+
+
