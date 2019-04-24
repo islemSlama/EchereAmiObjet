@@ -14,22 +14,17 @@
 
 
 
-		<input type="submit" name="Connexion" />
+	
 
 		<div id="username" class="row">
 
 
-			<br> Identifiant : <input type="text" name="uname" /> <br>
-			Mot de passe :<input type="password" name="pass" />
-
+			Identifiant : <input type="text" name="uname" /> <br> <br> 
+			Mot de passe :<input type="password" name="pass" /> <br> <br>
+			<input type="submit" name="Connexion" />
 		</div>
 
-		<div>
-			<div id="connexion" class="row">
-				<button type="submit"
-				class="btn btn-default btn-lg w-75 py-4 col-12 col-md-6 text-center py-2 align-middle h-100 align-self-center"
-					id="searchbtn" value="Connexion"></button>
-			</div>
+		
 			<br> <input type="checkbox" name="souvenir"> Se souvenir de moi <br> <a href="/Projet_Echere_Ami_Objet/MotDePasse">Mot de passe oublié</a>
 
 	

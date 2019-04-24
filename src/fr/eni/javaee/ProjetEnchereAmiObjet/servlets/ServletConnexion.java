@@ -49,7 +49,6 @@ public class ServletConnexion extends HttpServlet {
 
 		String pseudo = request.getParameter("uname");
 		String mot_de_passe = request.getParameter("pass");
-		;
 
 		Utilisateur utilisateurjsp = new Utilisateur(pseudo, mot_de_passe);
 
@@ -61,6 +60,7 @@ public class ServletConnexion extends HttpServlet {
 			if (valide) {
 				HttpSession session = request.getSession();
 				session.setAttribute("usename", pseudo);
+				// il faut pas oublié que j'envois vers une servlet et pas une jsp
 				response.sendRedirect("loginsuccess.jsp");
 			} else {
 				response.sendRedirect("Connexion");

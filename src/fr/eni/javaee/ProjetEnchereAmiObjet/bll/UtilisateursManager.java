@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import fr.eni.javaee.ProjetEnchereAmiObjet.bo.Utilisateur;
 import fr.eni.javaee.ProjetEnchereAmiObjet.dal.ConnectionProvider;
 import fr.eni.javaee.ProjetEnchereAmiObjet.dal.DALException;
@@ -50,10 +52,20 @@ public class UtilisateursManager {
 
 			PreparedStatement preparedStatement = cnx.prepareStatement(SELECT_USER_PASS);
 			preparedStatement.setString(1, utilisateur.getPseudo());
-			preparedStatement.setString(2, utilisateur.getMotDePasse());
+
+			// preparedStatement.setString(2, utilisateur.getMotDePasse());
+
+			// hashpw(utilisateur.getMotDePasse(), BCrypt.gensalt(15)
 
 			ResultSet rs = preparedStatement.executeQuery();
-			status = rs.next();
+			rs.next();
+			String motdepassebdd = rs.getString("mot_de_passe");
+
+			if (BCrypt.checkpw(utilisateur.getMotDePasse(), motdepassebdd)) {
+
+				status = true;
+
+			}
 
 			System.out.println(status);
 

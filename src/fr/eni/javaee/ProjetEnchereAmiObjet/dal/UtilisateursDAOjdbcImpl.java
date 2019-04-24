@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import fr.eni.javaee.ProjetEnchereAmiObjet.bo.Utilisateur;
 
 public class UtilisateursDAOjdbcImpl implements UtilisateursDAO {
@@ -31,7 +33,7 @@ public class UtilisateursDAOjdbcImpl implements UtilisateursDAO {
 			pstmt.setString(6, utilisateur.getRue());
 			pstmt.setString(7, utilisateur.getCodePostal());
 			pstmt.setString(8, utilisateur.getVille());
-			pstmt.setString(9, utilisateur.getMotDePasse());
+			pstmt.setString(9, BCrypt.hashpw(utilisateur.getMotDePasse(), BCrypt.gensalt(15)));
 			pstmt.setInt(10, utilisateur.getCredit());
 			pstmt.setBoolean(11, utilisateur.isAdministrateur());
 

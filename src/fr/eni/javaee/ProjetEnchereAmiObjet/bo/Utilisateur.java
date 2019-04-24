@@ -57,7 +57,6 @@ public class Utilisateur implements Serializable {
 	public Utilisateur(String pseudo, String motDePasse) {
 		this.pseudo = pseudo;
 		this.motDePasse = motDePasse;
-		// TODO Auto-generated constructor stub
 	}
 
 	public int getNoUtilisateur() {
