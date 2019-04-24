@@ -4,44 +4,43 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Connecxion</title>
 </head>
-<body>
-<form action ="ConnexionServlet" method= "post">
-
-<jsp:include page="/WEB-INF/fragments/head.jsp"></jsp:include>
-
 <body class="container-fluid">
+	<form action="Connexion" method="post">
 
- <input type = "submit" name ="ConnexionServlet"/>
- 
- </form>
-		<div id="username" class="row"></div>
+		<jsp:include page="/WEB-INF/fragments/head.jsp"></jsp:include>
+		<%@ include file="./fragments/header.html"%>
 
-		passe : <input type="password" name="pass" /> <br>
-		Identifiant : <input type="text" name="uname" /> <br> Mot de
+
+
+		<input type="submit" name="Connexion" />
+
+		<div id="username" class="row">
+
+
+			<br> Identifiant : <input type="text" name="uname" /> <br>
+			Mot de passe :<input type="password" name="pass" />
+
 		</div>
 
-			<div
-		<div id="connexion" class="row">
-				<a class="btn btn-default btn-lg w-75 py-4" type="submit"
-				class="col-12 col-md-6 text-center py-2 align-middle h-100 align-self-center">
-					id="searchbtn">Connexion</a>
+		<div>
+			<div id="connexion" class="row">
+				<button type="submit"
+				class="btn btn-default btn-lg w-75 py-4 col-12 col-md-6 text-center py-2 align-middle h-100 align-self-center"
+					id="searchbtn" value="Connexion"></button>
 			</div>
-			<br> <input type="checkbox" name="souvenir"> Se souvenir
-			de moi <br> <a href="/Projet_Echere_Ami_Objet/MotDePasse">
+			<br> <input type="checkbox" name="souvenir"> Se souvenir de moi <br> <a href="/Projet_Echere_Ami_Objet/MotDePasse">Mot de passe oublié</a>
 
-				Mot de passe oubliï¿½</a>
-
-	</form>
+	
 		</div>
-	<%@ include file="./fragments/header.html"%>
+</form>
 	<div
 		class="col-12 col-md-8 text-center py-2 align-middle h-100 align-self-center">
 		<a class="btn btn-default btn-lg w-75 py-4" type="submit"
-			id="searchbtn" href="/Projet_Echere_Ami_Objet/creerProfil">Creer
-	</div>
-			un compte</a>
-
+			id="searchbtn" href="/Projet_Echere_Ami_Objet/creerProfil">Creer un compte</a>
+			</div>
+			
 </body>
+
 </html>

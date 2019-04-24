@@ -49,28 +49,25 @@ public class ServletConnexion extends HttpServlet {
 
 		String pseudo = request.getParameter("uname");
 		String mot_de_passe = request.getParameter("pass");
+		;
 
 		Utilisateur utilisateurjsp = new Utilisateur(pseudo, mot_de_passe);
 
 		UtilisateursManager managerUtilisateur = new UtilisateursManager();
 
 		try {
-			boolean utilisateur = managerUtilisateur.validate(utilisateurjsp);
+
+			boolean valide = managerUtilisateur.validate(utilisateurjsp);
+			if (valide) {
+				HttpSession session = request.getSession();
+				session.setAttribute("usename", pseudo);
+				response.sendRedirect("loginsuccess.jsp");
+			} else {
+				response.sendRedirect("Connexion");
+			}
+
 		} catch (ClassNotFoundException | DALException e) {
-			e.printStackTrace();
-		}
-
-		HttpSession session = request.getSession();
-
-		if ((pseudo.equals(pseudo)) && (mot_de_passe.equals(mot_de_passe))) {
-
-			session.setAttribute("usename", pseudo);
-			response.sendRedirect("loginsuccess.jsp");
-
-		} else
-
-		{
-			response.sendRedirect("connexion.jsp");
+			response.sendRedirect("Connexion");
 		}
 	}
 

@@ -52,9 +52,10 @@ public class UtilisateursManager {
 			preparedStatement.setString(1, utilisateur.getPseudo());
 			preparedStatement.setString(2, utilisateur.getMotDePasse());
 
-			System.out.println(preparedStatement);
 			ResultSet rs = preparedStatement.executeQuery();
 			status = rs.next();
+
+			System.out.println(status);
 
 		} catch (SQLException e) {
 			// process sql exception
