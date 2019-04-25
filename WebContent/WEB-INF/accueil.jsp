@@ -6,8 +6,8 @@
 <jsp:include page="/WEB-INF/fragments/head.jsp"></jsp:include>
 
 <body class="container-fluid">
-<jsp:include page="./fragments/header.jsp" />
 
+	<jsp:include page="./fragments/header.jsp" />
 
 	<h1 class="text-center">Liste des enchères</h1>
 	<h2 class="col-12 ">Filtres :</h2>
@@ -16,24 +16,14 @@
 
 
 
-	<form method="post">
-		<div id="filtre" class="row">
+	<div class="form-group">
+	              <form  method="post">
+  	        	<div class="row">
 		
-			<div class="row col-12 col-md-4">
-						<div class="input-group-prepend">
-							<span class="input-group-text" id="basic-addon1"> <span
-								class="oi oi-magnifying-glass" aria-hidden="true"></span>
-							</span>
-						</div>
-						<input type="text" class="form-control" name="nom"
-							placeholder="Nom de l'article contient" aria-label="article"
-							aria-describedby="basic-addon1" value="">
-					</div>
-				</div>
 		
 
-			<div class="row col-12 col-md-4">
-				<div class="col-12 i-search order-2 order-md-1 py-2">
+			<div class="form-group col-xs-6 col-sm-6 col-md-6 col-lg-12">
+				<div class="col-5 i-search order-2 order-md-1 py-2">
 					<div class="input-group mb-3">
 						<div class="input-group-prepend">
 							<span class="input-group-text" id="select-categorie">Catégorie</span>
@@ -68,12 +58,15 @@
 				</div>
 
 			<div
-				class="col-12 col-md-6 text-center py-2 align-middle h-100 align-self-center">
+				class="col-6 col-md-6 text-center py-2 ">
 				<button class="btn btn-default btn-lg w-75 py-4" type="submit"
 					id="searchbtn">Rechercher</button>
 			</div>
 		</div>
-	</form>
+		</form>
+		</div>
+		
+	
 	
 	
 	<div id="resultats" class="row ">
@@ -91,7 +84,7 @@
 
 
 						<img src="images/exqvsabrti2mpthnxlnmh7kattyicgmd.jpg"
-							alt="Portable Acer" class="img-fluid img-thumbnail" />
+							alt="Portable gamer" class="img-fluid img-thumbnail" />
 
 
 
@@ -155,9 +148,9 @@
 		</div>
 
 
-
 	</div>
-
+	
 
 </body>
 </html>
+
