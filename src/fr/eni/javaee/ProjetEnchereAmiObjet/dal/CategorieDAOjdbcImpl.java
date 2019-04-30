@@ -58,7 +58,8 @@ public class CategorieDAOjdbcImpl implements CategorieDAO {
 			while (rs.next()) {
 
 				String libelle = rs.getString("libelle");
-				Categorie categorie = new Categorie(libelle);
+				int no_categorie = rs.getInt("no_categorie");
+				Categorie categorie = new Categorie(no_categorie, libelle);
 				categories.add(categorie);
 
 			}

@@ -1,7 +1,7 @@
 package fr.eni.javaee.ProjetEnchereAmiObjet.bo;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 public class ArticleVendu implements Serializable {
 
@@ -16,8 +16,17 @@ public class ArticleVendu implements Serializable {
 	private int prixVente;
 	private boolean etatVendu;
 
-	public ArticleVendu() {
+	public ArticleVendu(int noArticle, String nomArticle, String description, Date dateDebutEncheres,
+			Date dateFinEncheres, int prixInitial, int noUtilsateur, int noCategorie) {
 		super();
+		this.noArticle = noArticle;
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.prixInitial = prixInitial;
+		this.noUtilsateur = noUtilsateur;
+		this.noCategorie = noCategorie;
 	}
 
 	public ArticleVendu(String nomArticle, String description, Date dateDebutEncheres, Date dateFinEncheres,

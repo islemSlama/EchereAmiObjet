@@ -43,7 +43,7 @@
 								aria-label="Catégorie" aria-describedby="select-categorie">
 								
 		<c:forEach var="p" items= "${categorie}">
-			<option value='<c:out value="${p.noCategorie}"/>'><c:out value="${p.libelle}"/></option>
+			<option value="${p.noCategorie}"><c:out value="${p.libelle}"/></option>
 		</c:forEach>
 
 

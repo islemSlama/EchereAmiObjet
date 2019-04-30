@@ -3,7 +3,8 @@ package fr.eni.javaee.ProjetEnchereAmiObjet.bo;
 import java.time.LocalTime;
 
 public class Enchere {
-
+	private int noUtilisateur;
+	private int noArticle;
 	private LocalTime datEnchere;
 	private int montantEnchere;
 
@@ -11,10 +12,28 @@ public class Enchere {
 		super();
 	}
 
-	public Enchere(LocalTime datEnchere, int montantEnchere) {
+	public Enchere(int noUtilisateur, int noArticle, LocalTime datEnchere, int montantEnchere) {
 		super();
+		this.noUtilisateur = noUtilisateur;
+		this.noArticle = noArticle;
 		this.datEnchere = datEnchere;
 		this.montantEnchere = montantEnchere;
+	}
+
+	public int getNoUtilisateur() {
+		return noUtilisateur;
+	}
+
+	public void setNoUtilisateur(int noUtilisateur) {
+		this.noUtilisateur = noUtilisateur;
+	}
+
+	public int getNoArticle() {
+		return noArticle;
+	}
+
+	public void setNoArticle(int noArticle) {
+		this.noArticle = noArticle;
 	}
 
 	public LocalTime getDatEnchere() {
@@ -35,7 +54,8 @@ public class Enchere {
 
 	@Override
 	public String toString() {
-		return "Enchere [datEnchere=" + datEnchere + ", montantEnchere=" + montantEnchere + "]";
+		return "Enchere [noUtilisateur=" + noUtilisateur + ", noArticle=" + noArticle + ", datEnchere=" + datEnchere
+				+ ", montantEnchere=" + montantEnchere + "]";
 	}
 
 }

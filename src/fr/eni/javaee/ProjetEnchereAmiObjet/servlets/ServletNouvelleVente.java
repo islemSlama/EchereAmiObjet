@@ -3,6 +3,7 @@ package fr.eni.javaee.ProjetEnchereAmiObjet.servlets;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -99,17 +100,17 @@ public class ServletNouvelleVente extends HttpServlet {
 
 		String nomArticle = request.getParameter("nomArticle");
 		String description = request.getParameter("description");
-		java.sql.Date dateDebutEncheres = null;
+		Date dateDebutEncheres = null;
 		try {
 			// request.getParameter("debutEnchere")----> c'est les noms de mes champs dans
 			// la JSP
-			dateDebutEncheres = convertUtilToSql(sdf.parse((request.getParameter("debutEnchere"))));
+			dateDebutEncheres = sdf.parse((request.getParameter("debutEnchere")));
 		} catch (ParseException e2) {
 			e2.printStackTrace();
 		}
-		java.sql.Date dateFinEncheres = null;
+		Date dateFinEncheres = null;
 		try {
-			dateFinEncheres = convertUtilToSql(sdf.parse((request.getParameter("finEnchere"))));
+			dateFinEncheres = sdf.parse((request.getParameter("finEnchere")));
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
@@ -122,8 +123,9 @@ public class ServletNouvelleVente extends HttpServlet {
 		try {
 			articlesmanager = ArticleVenduManager.getInstance();
 
-			ArticleVendu maNouvVente = articlesmanager.addArticle(nomArticle, description, dateDebutEncheres,
-					dateFinEncheres, prixInitial, idUtilisateur, numCategorie);
+			ArticleVendu maNouvVente = new ArticleVendu(nomArticle, description, dateDebutEncheres, dateFinEncheres,
+					prixInitial, idUtilisateur, numCategorie);
+			articlesmanager.addArticle(maNouvVente);
 
 			session.setAttribute("idArticle", maNouvVente.getNomArticle());
 
@@ -132,14 +134,6 @@ public class ServletNouvelleVente extends HttpServlet {
 		}
 
 		response.sendRedirect("profilConnecte");
-	}
-
-	private java.sql.Date convertUtilToSql(java.util.Date parse) {
-		java.util.Date uDate = new java.util.Date();
-
-		java.sql.Date sDate = new java.sql.Date(uDate.getTime());
-		return sDate;
-
 	}
 
 }

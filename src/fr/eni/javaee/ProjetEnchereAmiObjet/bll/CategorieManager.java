@@ -1,5 +1,6 @@
 package fr.eni.javaee.ProjetEnchereAmiObjet.bll;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.javaee.ProjetEnchereAmiObjet.bo.Categorie;
@@ -7,7 +8,7 @@ import fr.eni.javaee.ProjetEnchereAmiObjet.dal.CategorieDAO;
 import fr.eni.javaee.ProjetEnchereAmiObjet.dal.DALException;
 
 public class CategorieManager {
-	private List<Categorie> listCategories;
+	private List<Categorie> listCategories = new ArrayList();
 	private static CategorieManager instance = null;
 	private CategorieDAO categorieDAO;
 

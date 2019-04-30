@@ -5,10 +5,6 @@ public class Categorie {
 	private int noCategorie;
 	private String libelle;
 
-	public Categorie() {
-		super();
-	}
-
 	public Categorie(String libelle) {
 		super();
 		this.libelle = libelle;
