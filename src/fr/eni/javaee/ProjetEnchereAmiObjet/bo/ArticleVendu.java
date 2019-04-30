@@ -1,16 +1,18 @@
 package fr.eni.javaee.ProjetEnchereAmiObjet.bo;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.sql.Date;
 
 public class ArticleVendu implements Serializable {
 
 	private int noArticle;
 	private String nomArticle;
 	private String description;
-	private LocalDate dateDebutEncheres;
-	private LocalDate dateFinEncheres;
+	private Date dateDebutEncheres;
+	private Date dateFinEncheres;
 	private int prixInitial;
+	private int noUtilsateur;
+	private int noCategorie;
 	private int prixVente;
 	private boolean etatVendu;
 
@@ -18,8 +20,21 @@ public class ArticleVendu implements Serializable {
 		super();
 	}
 
-	public ArticleVendu(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
-			LocalDate dateFinEncheres, int prixInitial, int prixVente, boolean etatVendu) {
+	public ArticleVendu(String nomArticle, String description, Date dateDebutEncheres, Date dateFinEncheres,
+			int prixInitial, int noUtilsateur, int noCategorie) {
+		super();
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.prixInitial = prixInitial;
+		this.noUtilsateur = noUtilsateur;
+		this.noCategorie = noCategorie;
+	}
+
+	public ArticleVendu(int noArticle, String nomArticle, String description, Date dateDebutEncheres,
+			Date dateFinEncheres, int prixInitial, int noUtilsateur, int noCategorie, int prixVente,
+			boolean etatVendu) {
 		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
@@ -27,20 +42,26 @@ public class ArticleVendu implements Serializable {
 		this.dateDebutEncheres = dateDebutEncheres;
 		this.dateFinEncheres = dateFinEncheres;
 		this.prixInitial = prixInitial;
+		this.noUtilsateur = noUtilsateur;
+		this.noCategorie = noCategorie;
 		this.prixVente = prixVente;
 		this.etatVendu = etatVendu;
 	}
 
-	public ArticleVendu(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
-			LocalDate dateFinEncheres, int prixInitial, int prixVente) {
-		super();
-		this.noArticle = noArticle;
-		this.nomArticle = nomArticle;
-		this.description = description;
-		this.dateDebutEncheres = dateDebutEncheres;
-		this.dateFinEncheres = dateFinEncheres;
-		this.prixInitial = prixInitial;
-		this.prixVente = prixVente;
+	public int getNoUtilsateur() {
+		return noUtilsateur;
+	}
+
+	public void setNoUtilsateur(int noUtilsateur) {
+		this.noUtilsateur = noUtilsateur;
+	}
+
+	public int getNoCategorie() {
+		return noCategorie;
+	}
+
+	public void setNoCategorie(int noCategorie) {
+		this.noCategorie = noCategorie;
 	}
 
 	public int getNoArticle() {
@@ -67,19 +88,19 @@ public class ArticleVendu implements Serializable {
 		this.description = description;
 	}
 
-	public LocalDate getDateDebutEncheres() {
+	public Date getDateDebutEncheres() {
 		return dateDebutEncheres;
 	}
 
-	public void setDateDebutEncheres(LocalDate dateDebutEncheres) {
+	public void setDateDebutEncheres(Date dateDebutEncheres) {
 		this.dateDebutEncheres = dateDebutEncheres;
 	}
 
-	public LocalDate getDateFinEncheres() {
+	public Date getDateFinEncheres() {
 		return dateFinEncheres;
 	}
 
-	public void setDateFinEncheres(LocalDate dateFinEncheres) {
+	public void setDateFinEncheres(Date dateFinEncheres) {
 		this.dateFinEncheres = dateFinEncheres;
 	}
 

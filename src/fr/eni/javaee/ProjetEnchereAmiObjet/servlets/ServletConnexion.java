@@ -59,9 +59,10 @@ public class ServletConnexion extends HttpServlet {
 			boolean valide = managerUtilisateur.validate(utilisateurjsp);
 			if (valide) {
 				HttpSession session = request.getSession();
-				session.setAttribute("usename", identifiant);
+				session.setAttribute("id", utilisateurjsp.getNoUtilisateur());
+				session.setAttribute("usename", utilisateurjsp.getPseudo());
 				// il faut pas oublié que j'envois vers une servlet et pas une jsp
-				response.sendRedirect("loginsuccess.jsp");
+				response.sendRedirect("profilConnecte");
 			} else {
 				response.sendRedirect("Connexion");
 			}

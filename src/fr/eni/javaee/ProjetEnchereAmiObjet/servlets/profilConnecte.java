@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.javaee.ProjetEnchereAmiObjet.bll.BLLException;
 import fr.eni.javaee.ProjetEnchereAmiObjet.bll.UtilisateursManager;
@@ -62,8 +63,10 @@ public class profilConnecte extends HttpServlet {
 			utilisateursmanager = UtilisateursManager.getInstance();
 			Utilisateur monNouvUtilisateur = utilisateursmanager.addUtilisateur(pseudo, nom, prenom, email, telephone,
 					rue, codePostal, ville, motDePasse);
-
-			System.out.println("OK !!!");
+			// au moment de la création de mon utilisateur je lui créé sa session.
+			HttpSession session = request.getSession();
+			session.setAttribute("id", monNouvUtilisateur.getNoUtilisateur());
+			session.setAttribute("usename", monNouvUtilisateur.getPseudo());
 
 		} catch (BLLException | DALException e) {
 			e.printStackTrace();

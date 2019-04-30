@@ -16,9 +16,15 @@
 				<li class="nav-item"><a class="nav-link "
 					href="/Projet_Echere_Ami_Objet/">Enchere</a></li>
 				<li class="nav-item"><a class="nav-link "
-					href="/Projet_Echere_Ami_Objet/">Vendre un article</a></li>
-				<li class="nav-item"><a class="nav-link "
-					href="/Projet_Echere_Ami_Objet/"> <c:if
+					href="/Projet_Echere_Ami_Objet/NouvelleVente">Vendre un article</a></li>
+					
+					<li class="nav-item"><a class="nav-link "
+					href="/Projet_Echere_Ami_Objet/AfficherProfil">Profil</a></li>
+					
+					
+				<li class="nav-item">
+				
+				<a class="nav-link " href="/Projet_Echere_Ami_Objet/modifierProfil"> <c:if
 							test="${sessionScope.usename != null}">
 							<p>bonjour ${sessionScope.usename}</p>
 						</c:if></a></li>
@@ -29,7 +35,9 @@
 					
 					<c:choose>
 				      <c:when test="${sessionScope.usename != null}">
-				     	<p>Deconnection</p>
+				     	<a  href="/Projet_Echere_Ami_Objet/Deconnexion"> 
+				     					     	
+				     	 Deconnection</a>
 				      </c:when>
 				
 				      <c:otherwise>

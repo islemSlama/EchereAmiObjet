@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,7 +12,7 @@
 	<div class="container">
 		
 	
-	      	<h1 class="center">Profil de ${user.pseudo}</h1>
+	      	<h1 class="center">Profil de ${utilisateur.pseudo}</h1>
 	      	<div class="row">
 				<div class="col-sm-6 offset-sm-4">
 					<div class="row">

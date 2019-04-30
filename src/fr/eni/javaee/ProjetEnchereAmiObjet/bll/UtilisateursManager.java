@@ -15,6 +15,7 @@ import fr.eni.javaee.ProjetEnchereAmiObjet.dal.UtilisateursDAO;
 
 public class UtilisateursManager {
 
+	// a voir pk cette requette est là???????????????
 	private static final String SELECT_USER_PASS = "select * from utilisateurs where pseudo = ?";
 	private static UtilisateursManager instance = null;
 	private UtilisateursDAO utilisateursDAO;
@@ -46,7 +47,7 @@ public class UtilisateursManager {
 		utilisateurs.setMotDePasse(motDePasse);
 		this.utilisateursDAO.insert(utilisateurs);
 
-		System.out.println("test" + utilisateurs.getNoUtilisateur());
+		// System.out.println("test" + utilisateurs.getNoUtilisateur());
 
 		return utilisateurs;
 	}
@@ -75,9 +76,8 @@ public class UtilisateursManager {
 			String motdepassebdd = rs.getString("mot_de_passe");
 
 			if (BCrypt.checkpw(utilisateur.getMotDePasse(), motdepassebdd)) {
-
 				status = true;
-
+				utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
 			}
 
 			System.out.println(status);
@@ -103,6 +103,49 @@ public class UtilisateursManager {
 					t = t.getCause();
 				}
 			}
+		}
+	}
+
+	public void updateUser(Utilisateur utilisateur, String nouveauMotDePasse, String confirmationNouveauMotDePasse)
+			throws BLLException, DALException {
+		BLLException blllException = new BLLException();
+
+		validerChamps(utilisateur, nouveauMotDePasse, confirmationNouveauMotDePasse, blllException);
+
+		if (blllException.hasErreurs()) {
+			throw blllException;
+		}
+
+		utilisateur.setMotDePasse(nouveauMotDePasse);
+		utilisateursDAO.update(utilisateur);
+	}
+
+	private void validerChamps(Utilisateur utilisateur, String nouveauMotDePasse, String confirmationNouveauMotDePasse,
+			BLLException blllException) {
+		if (utilisateur.getPseudo() == null || utilisateur.getNom() == null || utilisateur.getPrenom() == null
+				|| utilisateur.getEmail() == null || utilisateur.getTelephone() == null || utilisateur.getRue() == null
+				|| utilisateur.getCodePostal() == null || utilisateur.getVille() == null
+				|| utilisateur.getMotDePasse() == null || utilisateur.getPseudo().isEmpty()
+				|| utilisateur.getNom().isEmpty() || utilisateur.getPrenom().isEmpty()
+				|| utilisateur.getEmail().isEmpty() || utilisateur.getTelephone().isEmpty()
+				|| utilisateur.getRue().isEmpty() || utilisateur.getCodePostal().isEmpty()
+				|| utilisateur.getVille().isEmpty() || utilisateur.getMotDePasse().isEmpty()
+				|| nouveauMotDePasse == null || nouveauMotDePasse.isEmpty() || confirmationNouveauMotDePasse == null
+				|| confirmationNouveauMotDePasse.isEmpty()) {
+			// verif nmdp et cnmp
+			blllException.getListeCodesErreur().add(new Integer("veuillez remplir les champs manquants"));
+		}
+	}
+
+	public Utilisateur selectionnerUtilisateur(int idUtilisateur) throws BLLException {
+		return utilisateursDAO.selectById(idUtilisateur);
+	}
+
+	public void supprimerUtilisateur(int idUtilisateur) throws BLLException {
+		try {
+			utilisateursDAO.delete(idUtilisateur);
+		} catch (DALException e) {
+			e.printStackTrace();
 		}
 	}
 
