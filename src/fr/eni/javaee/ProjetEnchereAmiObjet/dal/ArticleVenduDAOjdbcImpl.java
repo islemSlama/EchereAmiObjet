@@ -15,12 +15,41 @@ public class ArticleVenduDAOjdbcImpl implements ArticleVenduDAO {
 
 	private static final String INSERT_ARTICLE = "insert into articles_vendus (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, no_utilisateur, no_categorie) VALUES (?, ? , ? ,? ,? ,? ,?)";
 	private static final String SELECT_ALL_ARTICLE = "select * from articles_vendus";
+	private static final String SELECT_ARTICLE_utilisateur = "select * from articles_vendus where no_utilisateur = ?";
+	private static final String SELECT_BY_ID_ARTICLE = "select nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial,prix_vente, no_utilisateur, no_categorie from Articles_vendus where no_article = ?";
+
+	public List<ArticleVendu> selectAllUtilisateur(int id) throws BLLException {
+		List<ArticleVendu> result = new ArrayList<>();
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			PreparedStatement pstmt = cnx.prepareStatement(SELECT_ARTICLE_utilisateur);
+			pstmt.setInt(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				result.add(map(rs));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			BLLException businessException = new BLLException();
+			// TODO : CodesResultatDAL
+			// businessException.ajouterErreur(CodesResultatDAL.LECTURE_LISTE_ECHEC);
+			throw businessException;
+		}
+
+		if (result.isEmpty()) {
+			BLLException businessException = new BLLException();
+			// TODO : CodesResultatDAL
+			// businessException.ajouterErreur(CodesResultatDAL.LECTURE_LISTE_INEXISTANTE);
+			throw businessException;
+		}
+
+		return result;
+	}
 
 	public ArticleVendu insertArticle(ArticleVendu article) throws DALException {
 
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 			cnx.setAutoCommit(false);
-			System.out.println(">>>>>>>>>>>>>>>>>>>>" + article.getNoCategorie());
+			// System.out.println(">>>>>>>>>>>>>>>>>>>>" + article.getNoCategorie());
 			PreparedStatement pstmt = cnx.prepareStatement(INSERT_ARTICLE, PreparedStatement.RETURN_GENERATED_KEYS);
 
 			pstmt.setString(1, article.getNomArticle());
@@ -37,6 +66,7 @@ public class ArticleVenduDAOjdbcImpl implements ArticleVenduDAO {
 
 				article.setNoArticle(rs.getInt(1));
 			}
+
 			rs.close();
 			pstmt.close();
 
@@ -66,6 +96,41 @@ public class ArticleVenduDAOjdbcImpl implements ArticleVenduDAO {
 		return mesarticles;
 	}
 
+	private java.sql.Date convertUtilToSql(java.util.Date parse) {
+		java.util.Date uDate = new java.util.Date();
+
+		java.sql.Date sDate = new java.sql.Date(uDate.getTime());
+		return sDate;
+
+	}
+
+	public ArticleVendu selectById(int id) throws BLLException {
+		ArticleVendu result = null;
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			PreparedStatement pstmt = cnx.prepareStatement(SELECT_BY_ID_ARTICLE);
+			pstmt.setInt(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				result = map(rs);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			BLLException businessException = new BLLException();
+			// TODO : CodesResultatDAL
+			// businessException.ajouterErreur(CodesResultatDAL.LECTURE_LISTE_ECHEC);
+			throw businessException;
+		}
+
+		if (result == null) {
+			BLLException businessException = new BLLException();
+			// TODO : CodesResultatDAL
+			// businessException.ajouterErreur(CodesResultatDAL.LECTURE_LISTE_INEXISTANTE);
+			throw businessException;
+		}
+
+		return result;
+	}
+
 	private ArticleVendu map(ResultSet rs) throws SQLException {
 
 		int id = rs.getInt("no_article");
@@ -81,11 +146,4 @@ public class ArticleVenduDAOjdbcImpl implements ArticleVenduDAO {
 				no_utilisateur, no_categorie);
 	}
 
-	private java.sql.Date convertUtilToSql(java.util.Date parse) {
-		java.util.Date uDate = new java.util.Date();
-
-		java.sql.Date sDate = new java.sql.Date(uDate.getTime());
-		return sDate;
-
-	}
 }

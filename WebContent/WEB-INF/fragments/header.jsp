@@ -2,8 +2,24 @@
 <header class="container-fluid">
 
 
+
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="/Projet_Echere_Ami_Objet/Accueil">ENI-Encheres</a>
+        
+        
+        
+        <c:choose>
+                      <c:when test="${sessionScope.usename != null}">
+                         <a  class="navbar-brand" href="/Projet_Echere_Ami_Objet/AccueilConnecteVente">
+                                                  
+                         ENI-Encheres</a>
+                      </c:when>
+                
+                      <c:otherwise>
+                          <a  class="navbar-brand" href="/Projet_Echere_Ami_Objet/Accueil">
+                          ENI-Encheres</a>
+                      </c:otherwise>
+                    </c:choose>
+
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
 			aria-expanded="false" aria-label="Toggle navigation">

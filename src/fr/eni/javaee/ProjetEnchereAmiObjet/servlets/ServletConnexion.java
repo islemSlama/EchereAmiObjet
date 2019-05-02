@@ -62,7 +62,7 @@ public class ServletConnexion extends HttpServlet {
 				session.setAttribute("id", utilisateurjsp.getNoUtilisateur());
 				session.setAttribute("usename", utilisateurjsp.getPseudo());
 				// il faut pas oublié que j'envois vers une servlet et pas une jsp
-				response.sendRedirect("profilConnecte");
+				response.sendRedirect("AccueilConnecteVente");
 			} else {
 				response.sendRedirect("Connexion");
 			}

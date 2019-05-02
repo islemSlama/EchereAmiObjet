@@ -45,7 +45,7 @@ public class EnchereDAOjdbcImpl implements EnchereDAO {
 		enchereCourant.setNoArticle(rs.getInt("no_article"));
 
 		// comment set un type local time
-		enchereCourant.setDatEnchere(rs.getDate("date_enchere"));
+		// enchereCourant.setDatEnchere(rs.getDate("date_enchere"));
 		enchereCourant.setMontantEnchere(rs.getInt("montant_enchere"));
 
 		return enchereCourant;

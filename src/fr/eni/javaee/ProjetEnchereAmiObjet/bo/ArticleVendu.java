@@ -14,7 +14,21 @@ public class ArticleVendu implements Serializable {
 	private int noUtilsateur;
 	private int noCategorie;
 	private int prixVente;
+	private Retrait retrait;
 	private boolean etatVendu;
+
+	public ArticleVendu(String nomArticle, String description, Date dateDebutEncheres, Date dateFinEncheres,
+			int prixInitial, int noUtilsateur, int noCategorie, Retrait retrait) {
+		super();
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.prixInitial = prixInitial;
+		this.noUtilsateur = noUtilsateur;
+		this.noCategorie = noCategorie;
+		this.retrait = retrait;
+	}
 
 	public ArticleVendu(int noArticle, String nomArticle, String description, Date dateDebutEncheres,
 			Date dateFinEncheres, int prixInitial, int noUtilsateur, int noCategorie) {
@@ -142,6 +156,14 @@ public class ArticleVendu implements Serializable {
 		return "ArticleVendu [noArticle=" + noArticle + ", nomArticle=" + nomArticle + ", description=" + description
 				+ ", dateDebutEncheres=" + dateDebutEncheres + ", dateFinEncheres=" + dateFinEncheres + ", prixInitial="
 				+ prixInitial + ", prixVente=" + prixVente + ", etatVendu=" + etatVendu + "]";
+	}
+
+	public Retrait getRetrait() {
+		return retrait;
+	}
+
+	public void setRetrait(Retrait retrait) {
+		this.retrait = retrait;
 	}
 
 }

@@ -43,7 +43,7 @@ public class ServletAfficherProfil extends HttpServlet {
 			// On passe l'utilisateur à la JSP via des setAttribute
 			request.setAttribute("utilisateur", utilisateur);
 
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/accesProfil.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/modifierProfil.jsp");
 			rd.forward(request, response);
 
 		} catch (BLLException e) {

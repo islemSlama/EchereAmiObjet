@@ -97,21 +97,21 @@
 							<label class="col-sm-3">Rue :</label>
 							<div class="col-sm-9 col-md-9 col-lg-9">
 								<input type="text" value="${utilisateur.rue}" name="rue"
-									id="rue" class="form-control" disabled>
+									id="rue" class="form-control" >
 							</div>
 						</div>
 						<div class="form-group row">
 							<label class="col-sm-3">Code postal :</label>
 							<div class="col-sm-9 col-md-9 col-lg-9">
 								<input type="text" value="${utilisateur.codePostal}"
-									name="codePostal" id="codePostal" class="form-control" disabled>
+									name="codePostal" id="codePostal" class="form-control" >
 							</div>
 						</div>
 						<div class="form-group row">
 							<label class="col-sm-3">Ville :</label>
 							<div class="col-sm-9 col-md-9 col-lg-9">
 								<input type="text" value="${utilisateur.ville}" name="ville"
-									id="ville" class="form-control" disabled>
+									id="ville" class="form-control" >
 							</div>
 						</div>
 						<input type="hidden" id="rueUtilisateur"
@@ -128,7 +128,7 @@
 						</div>
 
 						<div class="col-sm-4 offset-sm-4">
-							<a class="btn btn-lg" href="/Projet_Echere_Ami_Objet/Accueil"><button
+							<a class="btn btn-lg" href="/Projet_Echere_Ami_Objet/AccueilConnecteVente"><button
 									type="button" class="btn btn-danger">Annuler</button></a>
 						</div>
 					</div>

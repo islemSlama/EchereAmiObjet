@@ -17,7 +17,6 @@ import javax.servlet.http.HttpSession;
 import fr.eni.javaee.ProjetEnchereAmiObjet.bll.ArticleVenduManager;
 import fr.eni.javaee.ProjetEnchereAmiObjet.bll.BLLException;
 import fr.eni.javaee.ProjetEnchereAmiObjet.bll.CategorieManager;
-import fr.eni.javaee.ProjetEnchereAmiObjet.bll.RetraitManager;
 import fr.eni.javaee.ProjetEnchereAmiObjet.bll.UtilisateursManager;
 import fr.eni.javaee.ProjetEnchereAmiObjet.bo.ArticleVendu;
 import fr.eni.javaee.ProjetEnchereAmiObjet.bo.Categorie;
@@ -55,14 +54,12 @@ public class ServletNouvelleVente extends HttpServlet {
 		System.out.println("test" + idUtilisateur);
 
 		UtilisateursManager managerUtilisateurModif = new UtilisateursManager();
-		RetraitManager managerretraitModif = new RetraitManager();
 
 		CategorieManager managerCategoriemodif = new CategorieManager();
 
 		try {
 
 			utilisateur = managerUtilisateurModif.selectionnerUtilisateur(idUtilisateur);
-			// retrait = managerretraitModif.addRetrait(rue, codePostal, ville);
 
 			categories = managerCategoriemodif.chargerMesCategories();
 			// j'ai utiliser ça pour voir les listes que j'envois
@@ -115,25 +112,38 @@ public class ServletNouvelleVente extends HttpServlet {
 			e1.printStackTrace();
 		}
 		int prixInitial = Integer.parseInt(request.getParameter("prix"));
-		// int numUtilisateur =
-		// Integer.parseInt(request.getParameter("no_utilisateur"));
+
 		int numCategorie = Integer.parseInt(request.getParameter("no_categorie"));
 
 		ArticleVenduManager articlesmanager;
+
 		try {
+
+			// int noArticle = Integer.parseInt(request.getParameter("no_article"));
+			String rue = request.getParameter("rue");
+			System.out.println("test" + rue);
+			String codePostal = request.getParameter("codePostal");
+			String ville = request.getParameter("ville");
+
 			articlesmanager = ArticleVenduManager.getInstance();
+
+			Utilisateur utilisateurconstruit = new Utilisateur(rue, codePostal, ville);
+			// System.out.println("tesssssssssssssssssssssssssst" + utilisateurconstruit);
 
 			ArticleVendu maNouvVente = new ArticleVendu(nomArticle, description, dateDebutEncheres, dateFinEncheres,
 					prixInitial, idUtilisateur, numCategorie);
-			articlesmanager.addArticle(maNouvVente);
+			articlesmanager.addArticleRetarit(maNouvVente, utilisateurconstruit);
 
 			session.setAttribute("idArticle", maNouvVente.getNomArticle());
+			request.setAttribute("article", maNouvVente);
+			// request.setAttribute("utilisateur", utilisateurconstruit);
 
-		} catch (BLLException | DALException e) {
+		} catch (DALException e) {
 			e.printStackTrace();
 		}
-
-		response.sendRedirect("profilConnecte");
+		// RequestDispatcher rd = request.getRequestDispatcher("profilConnecte");
+		// rd.forward(request, response);
+		response.sendRedirect("AccueilConnecteVente");
 	}
 
 }

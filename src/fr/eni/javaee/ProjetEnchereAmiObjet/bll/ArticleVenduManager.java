@@ -5,24 +5,38 @@ import java.util.Date;
 import java.util.List;
 
 import fr.eni.javaee.ProjetEnchereAmiObjet.bo.ArticleVendu;
+import fr.eni.javaee.ProjetEnchereAmiObjet.bo.Retrait;
+import fr.eni.javaee.ProjetEnchereAmiObjet.bo.Utilisateur;
 import fr.eni.javaee.ProjetEnchereAmiObjet.dal.ArticleVenduDAO;
 import fr.eni.javaee.ProjetEnchereAmiObjet.dal.ArticleVenduDAOjdbcImpl;
 import fr.eni.javaee.ProjetEnchereAmiObjet.dal.DALException;
+import fr.eni.javaee.ProjetEnchereAmiObjet.dal.RetraitDAO;
+import fr.eni.javaee.ProjetEnchereAmiObjet.dal.RetraitDAOjdbcImpl;
 
 public class ArticleVenduManager {
 
 	private ArticleVenduDAO articleVenduDAO = new ArticleVenduDAOjdbcImpl();
-	private List<ArticleVendu> catalogueArticle = new ArrayList();
+	private RetraitDAO retraitDAO = new RetraitDAOjdbcImpl();
+	private List<ArticleVendu> catalogueArticle = new ArrayList<>();
 	private static ArticleVenduManager instance = null;
 
-	public static ArticleVenduManager getInstance() throws BLLException {
+	private ArticleVenduManager() {
+		try {
+			this.chargerLesArticles();
+		} catch (BLLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static ArticleVenduManager getInstance() {
 		if (instance == null) {
 			instance = new ArticleVenduManager();
 		}
 		return instance;
 	}
 
-	public void addArticle(ArticleVendu nouvelArticlevendu) throws DALException {
+	public void addArticleRetarit(ArticleVendu nouvelArticlevendu, Utilisateur utilisateurconstruit)
+			throws DALException {
 
 		if (catalogueArticle.contains(nouvelArticlevendu)) {
 			// OU
@@ -45,6 +59,22 @@ public class ArticleVenduManager {
 
 			// Ajout en base de données
 			articleVenduDAO.insertArticle(nouvelArticlevendu);
+
+			// int noArticle = Integer.parseInt(request.getParameter("no_article"));
+
+			int articlevendunum = nouvelArticlevendu.getNoArticle();
+
+			System.out.println("test1" + articlevendunum);
+
+			String rue = utilisateurconstruit.getRue();
+
+			String codePostal = utilisateurconstruit.getCodePostal();
+			String ville = utilisateurconstruit.getVille();
+
+			Retrait retrait = new Retrait(articlevendunum, rue, codePostal, ville);
+			// System.out.println("test3" + retrait);
+
+			retraitDAO.insert(retrait);
 			// Ajout dans le catalogue
 			catalogueArticle.add(nouvelArticlevendu);
 
@@ -101,6 +131,14 @@ public class ArticleVenduManager {
 
 	public List<ArticleVendu> getCatalogue() {
 		return catalogueArticle;
+	}
+
+	public ArticleVendu selectionnerArticle(int idArticle) throws BLLException {
+		return articleVenduDAO.selectById(idArticle);
+	}
+
+	public List<ArticleVendu> selectionnerArticleUtilisateur(int idutilisateur) throws BLLException {
+		return articleVenduDAO.selectAllUtilisateur(idutilisateur);
 	}
 
 }

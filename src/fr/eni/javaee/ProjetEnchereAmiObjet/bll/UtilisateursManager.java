@@ -45,6 +45,7 @@ public class UtilisateursManager {
 		utilisateurs.setCodePostal(codePostal);
 		utilisateurs.setVille(ville);
 		utilisateurs.setMotDePasse(motDePasse);
+
 		this.utilisateursDAO.insert(utilisateurs);
 
 		// System.out.println("test" + utilisateurs.getNoUtilisateur());

@@ -10,4 +10,8 @@ public interface ArticleVenduDAO {
 	public ArticleVendu insertArticle(ArticleVendu article) throws DALException;
 
 	public List<ArticleVendu> selectAll() throws BLLException;
+
+	public ArticleVendu selectById(int idArticle) throws BLLException;
+
+	public List<ArticleVendu> selectAllUtilisateur(int id) throws BLLException;
 }

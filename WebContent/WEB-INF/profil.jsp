@@ -82,7 +82,9 @@
 							<label>Confirmation mot de passe :<br></label>
 							<input name="mdpConf" placeholder="Merci de confirmer votre mot de passe" type="password" class="form-control"  maxlength="30">
 							
-						</div>
+			
+							
+				
 						<div class="form-group col-xs-6 col-sm-6 col-md-6 col-lg-6">
 							<a class="btn btn-lg" href=""><button type="submit" class="btn lienBouton bleu fatBoutonHalf">Créer</button></a>
 						</div>

@@ -37,7 +37,7 @@ public class profilConnecte extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/profilConnecte.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/AccueilConnecteVente.jsp");
 		rd.forward(request, response);
 	}
 
@@ -66,7 +66,7 @@ public class profilConnecte extends HttpServlet {
 			// au moment de la création de mon utilisateur je lui créé sa session.
 			HttpSession session = request.getSession();
 			session.setAttribute("id", monNouvUtilisateur.getNoUtilisateur());
-			session.setAttribute("usename", monNouvUtilisateur.getPseudo());
+			session.setAttribute("usename", monNouvUtilisateur);
 
 		} catch (BLLException | DALException e) {
 			e.printStackTrace();
